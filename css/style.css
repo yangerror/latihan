@@ -1,0 +1,70 @@
+.centered{
+    margin: 0;
+    position: absolute;
+    top:50%;
+    left:50%;
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.character{
+    background-color: white;
+    color: white;
+    transition: 0.5s;
+    font-size: 24px;
+    margin-right: 5px;
+    padding: 5px;
+    min-width: 25px;
+}
+
+#pointer{
+    background-color: white;
+    transition: 0.2s;
+    min-width: 35px;
+}
+
+#test{
+    transition: 0.5s;
+}
+
+#nama{
+    background-color: transparent;
+    outline: none;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 40px;
+    opacity: 0;
+    width: 0%;
+    transition: 1s;
+    color: white;
+    font-weight: bold;
+    display: none;
+    text-align: center;
+}
+
+.tombol{
+    background-color: transparent;
+    outline: none;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 40px;
+    opacity: 0%;
+    width: 0%;
+    transition: 1s;
+    color: white;
+    font-weight: bold;
+    display: none;
+}
+
+.tombol:hover{
+    background-color: white;
+    color: black;
+}
+
+body{
+    overflow-x: hidden;
+}

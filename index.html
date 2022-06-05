@@ -1,0 +1,266 @@
+<HTML>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="confetti.js"></script>
+        <link href="css/style.css" rel="stylesheet">
+        <title>Test</title>
+    </head>
+    <body style="background-color:black;">
+        <div class="container-fluid h-100" style="background-color:black ;">
+            <div class="container-fluid centered"  style="background-color:black ;">
+                <div id="line" class="container-fluid row justify-content-center" style="background-color:black ;">
+                    <div class="col-auto" id="pointer">
+                    </div>
+                </div>
+                <div id="line2" class="container-fluid row p-4" style="background-color:black ;">
+                    <div class="offset-4 col-4 text-center">
+                        <input id="nama" type="text"/>
+                    </div>
+                </div>
+                <div id="line3" class="container-fluid row p-4" style="background-color: black;">
+                    <div class="offset-5 col-2">
+                        <button id="mau" class="tombol">Mau</button>
+                    </div>
+                    <div class="col-4"> </div>
+                    <div class="offset-5 col-2 pt-1">
+                        <button id="ga" class="tombol">Gamau</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        var i = 1;
+
+        function berubah(){
+            setTimeout(function(){
+                $('.character').last().css('background-color', 'black');
+            }, 100);
+        }
+        function apus(){
+            $('.character').last().remove();
+            $('#pointer').css('background-color','#ffffff');
+        }
+        function addCharacter(character){
+            $('#pointer').before('<div class="col-auto character">'+character+'</div>');
+            $('#pointer').css('background-color','#ffffff');
+            berubah();
+        }
+        var blink = function(){
+            $('#pointer').css('background-color','#000000');
+            setTimeout(function(){
+                $('#pointer').css('background-color','#ffffff');
+                setTimeout(function(){
+                    blink();
+                }, 1000);
+            }, 1000);
+        };
+
+        var tArr = ['안녕하세요','Insert your name...'];
+        var testar =['Insert your name...']
+
+        async function test(){
+            await write('123');
+            await pause(3000);
+            await delWord();
+            await write('456');
+        }
+
+        async function start(tArr){
+            for (let i = 0; i < tArr.length; i++) {
+                var words = tArr[i];
+                await write(words,x=150,y=5000);
+                if(i<tArr.length-1){
+                    await delWord();
+                }else{
+                    $('#nama').css('display', 'inline-block');
+                    $('#nama').css('opacity', '100%');
+                    await pause(100);
+                    $('#nama').css('width','100%');
+                }
+            }
+        }
+
+        async function delWord(x = 250){
+            while ($('#line .character').length>0) {
+                apus();
+                await pause(x);
+            }
+        }
+
+
+        async function write(word, x = 250, y = 3000){
+            for (let i = 0; i < word.length; i++) {
+                addCharacter(word[i]);
+                await pause(x);
+
+            }
+            await pause(y);
+        }
+
+        function pause(time){
+            return new Promise(function(resolve, reject){
+                setTimeout(resolve,time);
+            });
+        }
+
+        start(tArr);
+
+        //input
+
+        var typingTimer;
+        var doneTypingInterval = 3000;
+
+        $('#nama').keyup(function(){
+            clearTimeout(typingTimer);
+            console.log('masuk')
+            if($('#nama').val()){
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            }
+        });
+
+        async function doneTyping (){
+            console.log('anjing');
+            var nama = $('#nama').val().toLowerCase();
+            if(nama == 'jovanca' || nama == 'anna'){
+
+                $('#nama').css('width','0%');
+                await pause(100);
+                $('#nama').css('opacity', '0%');
+                await pause(2000);
+                $('#nama').css('display','none');
+                await phaseTwo(nama);
+            }else{
+
+            }
+        }
+
+        var phaseTwoWords = [
+            '6 Juni 2022',
+            'Tanggal hari ini',
+            'Beberapa minggu',
+            'setelah gue sadar',
+            'kalo gue sayang sama lo',
+            'beberapa minggu ini',
+            'gue bahagia banget',
+            'bareng sama lo',
+            'spend time berdua',
+            'ngapain aja sama lo',
+            '. . .',
+            'awal gue kenal',
+            'lo selalu ceria',
+            'selalu ketawa',
+            'selalu bahagia',
+            'tapi ternyata',
+            'lu bisa nangis',
+            'lu bisa sedih',
+            'lu bisa marah',
+            'dan itu...',
+            'bikin gue sayang',
+            'bikin gue care',
+            'bikin gue peduli',
+            'gue sayang sama lo',
+            'gue mau sama lo',
+            '. . .',
+            'Hari ini...',
+            '6 Juni 2022',
+        ] 
+
+        async function phaseTwo(nama){
+            await delWord(100);
+            await write('Hello, '+nama, 100);
+            await delWord(100);
+            for (let i = 0; i < phaseTwoWords.length; i++) {
+                await write(phaseTwoWords[i],150,2000);
+                await delWord(100);
+            }
+            await write('lo mau ga jadi pacar gue?', 150, 2000);
+            await showTombol();
+        }
+
+        async function showTombol(){
+            var mau = $('#mau');
+            var ga = $('#ga');
+            mau.css('display','inline-block');
+            ga.css('display','inline-block');
+            await pause(3000);
+            mau.css('opacity','100');
+            await pause(100);
+            mau.css('width','100%');
+            ga.css('float','right');
+            await pause(2000);
+            ga.css('opacity','100');
+            await pause(100);
+            ga.css('width','100%');
+        }
+
+        showTombol();
+
+        $('#mau').click(async function(){
+            $('#line3').css('display','none');
+            await delWord(50);
+            await pause(3000);
+            await write('I love you',150);
+            await pause(5000);
+            await delWord(50);
+            await write('yeyey pacaran',100);
+            startConfetti();
+        });
+
+        var posisi = 'offset-5';
+
+        $('#ga').click(function(){
+            $('#ga').parent().css('transition','0.5s');
+            $('#ga').parent().removeClass(posisi);
+            var pos = ['offset-3','offset-8','offset-12','offset-2','offset-9','offset-10','offset-1','offset-5','offset-6','offset-12'];
+            var rand = Math.floor(Math.random()*10);
+            while(posisi == pos[rand]){
+                rand = Math.floor(Math.random()*10);
+            }
+            posisi = pos[rand];
+            console.log(rand);
+            console.log(posisi)
+            $('#ga').parent().addClass(posisi);
+        });
+
+        
+
+
+        // async function write(tArr){
+        //     for (let i = 0; i < tArr.length; i++) {
+        //         var word = tArr[i];
+        //         for (let j = 0; j < word.length; j++) {
+        //              var character = word[j];
+        //              setTimeout(function(){
+        //                  addCharacter(word[j]);
+        //              }, 250*j);
+        //         }
+        //         setTimeout(async function(){
+        //             const a = await hapus(word);
+        //         }, 3000+(250*word.length));   
+        //     }
+        //     return;
+        // }
+
+        // async function hapus(word){
+        //     for (let j = 0; j < word.length; j++) {
+        //         var character = word[j];
+        //         setTimeout(function(){
+        //             apus();
+        //         }, 250*j);
+        //     }
+        //     return;
+        // }
+
+
+        blink();
+        //test();
+        //write(tArr[0],0);
+
+
+    </script>
+
+
+</HTML>
