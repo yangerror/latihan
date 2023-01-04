@@ -60,6 +60,19 @@
     display: none;
 }
 
+.tombol-lampu{
+    background-color: transparent;
+    outline: none;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 40px;
+    transition: 1s;
+    color: white;
+    font-weight: bold;
+}
+
 .tombol:hover{
     background-color: white;
     color: black;
@@ -68,3 +81,68 @@
 body{
     overflow-x: hidden;
 }
+
+.bg-black{
+    background-color: #000;
+}
+
+.bg-glacial{
+    background-color: #aceaff;
+}
+
+html{
+    overflow: hidden;
+}
+
+.light{
+  position: absolute;
+  opacity: 1;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(at 50% 0%, #aceaff, #bfefff);
+  z-index: 1;
+  animation: over 12s ease forwards;
+}
+
+.text-main{
+    color:white;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.container {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    margin-left: -50%;
+    margin-top: -200px;
+    position: absolute;
+  }
+
+@keyframes over {
+    0% {
+      opacity: 0
+    }
+    ;
+    100% {
+      opacity: 1
+    }
+    ;
+}
+
+#two{
+    display: none;
+}
+
+#three{
+    display: none;
+}
+
+#four{
+    display: none;
+}
+
+/* stuff */
